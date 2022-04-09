@@ -1,0 +1,48 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
+    id 'application'
+}
+
+group 'com.ilpanda.rabbit'
+
+mainClassName = 'com.ilpanda.rabbit.Main'
+
+repositories {
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://maven.aliyun.com/nexus/content/repositories/jcenter" }
+    maven { url "https://maven.aliyun.com/nexus/content/repositories/google" }
+    maven { url "https://maven.aliyun.com/nexus/content/repositories/gradle-plugin" }
+    maven { url "https://maven-central.storage.googleapis.com" }
+    mavenCentral()
+}
+
+dependencies {
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+
+    // gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // okio
+    implementation 'com.squareup.okio:okio:3.0.0'
+
+    // clikt
+    implementation("com.github.ajalt.clikt:clikt:3.4.0")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named("distTar").configure { task ->
+    task.enabled = false
+}
+
+tasks.named("assemble").configure { task ->
+    task.dependsOn(tasks.named("installDist"))
+}
