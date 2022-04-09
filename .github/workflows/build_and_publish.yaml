@@ -62,5 +62,5 @@ jobs:
           brew tap ilpanda/repo
           brew bump-formula-pr -f --version=${{ steps.get_version.outputs.version }} --no-browse --no-audit \
             --sha256=${{ steps.shasum.outputs.sha }} \
-            --url="https://github.com/ilpanda/rabbbit/releases/download/${{ steps.get_version.outputs.version }}/rabbit.zip" \
+            --url="https://github.com/ilpanda/rabbit/releases/download/${{ steps.get_version.outputs.version }}/rabbit.zip" \
             ilpanda/repo/rabbit
