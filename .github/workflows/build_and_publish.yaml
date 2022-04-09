@@ -59,7 +59,7 @@ jobs:
           # Update to ensure we have the latest version which supports arbitrary default branches.
           brew update
 
-          brew tap JakeWharton/repo
+          brew tap ilpanda/repo
           brew bump-formula-pr -f --version=${{ steps.get_version.outputs.version }} --no-browse --no-audit \
             --sha256=${{ steps.shasum.outputs.sha }} \
             --url="https://github.com/ilpanda/rabbbit/releases/download/${{ steps.get_version.outputs.version }}/rabbit.zip" \
