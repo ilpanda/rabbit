@@ -1,4 +1,5 @@
 @file:JvmName("Main")
+
 package com.ilpanda.rabbit
 
 import com.github.ajalt.clikt.core.CliktCommand
@@ -38,6 +39,7 @@ class AdbCommand(
     private val logSpecificPackageActivity by option(
         "--print",
         "-p",
+        metavar = "packageName",
         help = "print specific package activities"
     )
 
