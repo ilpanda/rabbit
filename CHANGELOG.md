@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.0] - 2022-04-23
+
+### Added
+- Add Adb Command
+
 ## [1.1.0] - 2022-04-15
 
 ### Added
@@ -21,3 +26,4 @@
 [1.0.0]: https://github.com/ilpanda/rabbit/releases/tag/1.0.0
 [1.0.1]: https://github.com/ilpanda/rabbit/releases/tag/1.0.1
 [1.1.0]: https://github.com/ilpanda/rabbit/releases/tag/1.1.0
+[1.2.0]: https://github.com/ilpanda/rabbit/releases/tag/1.2.0
