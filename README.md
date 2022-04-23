@@ -2,6 +2,11 @@
 通过 rabbit 命令快速查看当前显示的 Activity 名称、Fragment 名称。
 
 ---
+### 开发背景
+在 Android 开发过程当中，为了快速定位代码，我们经常需要找到当前页面显示的 Activity 名称与 Fragment 名称，因此本项目对常用的一些 adb 进行封装。 
+
+
+---
 ### 基础原理
 对 `adb shell dumpsys activity` 和 `grep` 命令做了简单封装，使得能够快速在命令行打印 Activity、Fragment 信息。
 

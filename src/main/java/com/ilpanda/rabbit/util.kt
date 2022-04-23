@@ -32,3 +32,5 @@ fun String.exec(ignoreError: Boolean = false): String {
         errorOutput
     }
 }
+
+fun String.multiLine() = split("\\r?\\n|\\r".toRegex())
