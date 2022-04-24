@@ -27,7 +27,7 @@ Mac 系统使用 brew 安装 rabbit：
 $ brew install ilpanda/repo/rabbit
 ```
 
-打开一个新的终端，在命令行执行：
+打开一个新的终端，在命令行执行 `rabbit --help` 查看帮助信息：
 
 ```shell
 $ rabbit --help
