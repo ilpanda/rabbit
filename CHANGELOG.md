@@ -1,5 +1,12 @@
 # Changelog
 
+
+## [1.3.0] - 2022-04-24
+
+### Added
+- update README.md
+
+
 ## [1.2.0] - 2022-04-23
 
 ### Added
@@ -27,3 +34,4 @@
 [1.0.1]: https://github.com/ilpanda/rabbit/releases/tag/1.0.1
 [1.1.0]: https://github.com/ilpanda/rabbit/releases/tag/1.1.0
 [1.2.0]: https://github.com/ilpanda/rabbit/releases/tag/1.2.0
+[1.3.0]: https://github.com/ilpanda/rabbit/releases/tag/1.3.0

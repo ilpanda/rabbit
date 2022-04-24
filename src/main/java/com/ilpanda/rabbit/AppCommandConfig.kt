@@ -40,7 +40,7 @@ class AppCommandConfig : OptionGroup(
         "-r",
         "--restart",
         metavar = "packageName",
-        help = "restart app , kill and start",
+        help = "restart app , use --kill and --start command",
     )
 
 
