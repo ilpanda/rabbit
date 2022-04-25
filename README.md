@@ -121,3 +121,14 @@ $ rabbit adb --restart [packageName]
 $ rabbit adb --kill [packageName]
 $ rabbit adb --start [packageName]
 ```
+
+---
+### 常见问题
+
+```text
+Exception occurred while executing 'grant':
+java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.
+	at android.app.ContextImpl.enforce(ContextImpl.java:2096)
+	......
+```
+需要打开开发者选项中的禁止权限监控。

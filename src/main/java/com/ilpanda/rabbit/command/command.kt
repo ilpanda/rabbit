@@ -97,8 +97,10 @@ class GrantCommand(override val packageName: String?) : AppCommandStrategy {
         val multiLineStringList =
             "adb shell dumpsys package $packageName".exec().multiLine()
         val requestedPermissions = getRequestedPermissions(multiLineStringList)
-        requestedPermissions.forEach {
-            "adb shell pm grant $packageName $it".exec(ignoreError = true)
+        requestedPermissions.forEach { it ->
+            "adb shell pm grant $packageName $it".exec(ignoreError = true, exitWhen = {
+                it.contains("Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS")
+            })
         }
     }
 

@@ -4,8 +4,10 @@ import okio.buffer
 import okio.source
 import kotlin.system.exitProcess
 
-
-fun String.exec(ignoreError: Boolean = false): String {
+fun String.exec(
+    ignoreError: Boolean = false,
+    exitWhen: ((errorMsg: String) -> Boolean)? = null
+): String {
     return Runtime.getRuntime().exec(arrayOf("/bin/sh", "-c", this)).let { it ->
 
         val buffer = it.inputStream.source().buffer()
@@ -24,7 +26,12 @@ fun String.exec(ignoreError: Boolean = false): String {
 
         val errorOutput = it.errorStream.source().buffer().readUtf8()
         if (errorOutput.isNotEmpty()) {
-            if (!ignoreError) {
+
+            val interceptorRes = exitWhen?.let {
+                exitWhen(errorOutput)
+            }
+
+            if (interceptorRes == true || !ignoreError) {
                 println(errorOutput)
                 exitProcess(1)
             }
