@@ -132,3 +132,13 @@ java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor curre
 	......
 ```
 需要打开开发者选项中的禁止权限监控。
+
+```text
+Exception occurred while executing 'clear':
+java.lang.SecurityException: adb clearing user data is forbidden.
+	at com.android.server.pm.OplusClearDataProtectManager.interceptClearUserDataIfNeeded(OplusClearDataProtectManager.java:88)
+	at com.android.server.pm.OplusBasePackageManagerService$OplusPackageManagerInternalImpl.interceptClearUserDataIfNeeded(OplusBasePackageManagerService.java:531)
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4708)
+	......
+```
+部分手机预装 App 不支持 adb clear。
