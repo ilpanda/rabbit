@@ -124,15 +124,20 @@ $ rabbit adb --start [packageName]
 
 ---
 ### 常见问题
-
+当遇到下列报错：
+```text
+Exception occurred while executing 'clear':
+java.lang.SecurityException: PID 8391 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package xxxx
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:3837)
+```
+或者下列报错：
 ```text
 Exception occurred while executing 'grant':
 java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.
 	at android.app.ContextImpl.enforce(ContextImpl.java:2096)
 	......
 ```
-需要打开开发者选项中的禁止权限监控。
-
+需要打开手机开发者选项中的禁止权限监控按钮（默认是关闭的）。如果遇到下列报错：
 ```text
 Exception occurred while executing 'clear':
 java.lang.SecurityException: adb clearing user data is forbidden.
