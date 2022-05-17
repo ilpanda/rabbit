@@ -5,6 +5,8 @@ package com.ilpanda.rabbit
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.groups.provideDelegate
+import com.github.ajalt.clikt.parameters.options.option
+import com.github.ajalt.clikt.parameters.types.choice
 import com.ilpanda.rabbit.command.*
 
 class NoOpCommand(name: String = "rabbit") : CliktCommand(name = name) {
@@ -12,7 +14,6 @@ class NoOpCommand(name: String = "rabbit") : CliktCommand(name = name) {
 
     }
 }
-
 
 class AdbCommand(
     name: String = "adb",
@@ -23,13 +24,29 @@ class AdbCommand(
 
     val appConfig by AppCommandConfig()
 
+    val actionConfig by option("-ac", "--action", help = "android adb start system activity").choice(
+        "locale" to "android.settings.LOCALE_SETTINGS",
+        "developer" to "android.settings.APPLICATION_DEVELOPMENT_SETTINGS",
+        "application" to "android.settings.APPLICATION_SETTINGS",
+        "notification" to "android.settings.ALL_APPS_NOTIFICATION_SETTING"
+    )
+
     override fun run() {
         val res = """adb shell dumpsys activity activities | grep  mResumedActivity| awk '{print $4}'""".exec()
         val packageName = res.split("/")[0]
 
         execute(packageName, logConfig)
+
         execute(appConfig)
 
+        actionConfig?.also {
+            executeQuickStart(it)
+        }
+
+    }
+
+    private fun executeQuickStart(action: String?) {
+        """adb shell am start -a $action""".exec()
     }
 
     private fun execute(packageName: String, config: LogCommandConfig) {
@@ -63,5 +80,5 @@ class AdbCommand(
 }
 
 fun main(args: Array<String>) {
-    NoOpCommand().subcommands(AdbCommand()).main(args)
+    NoOpCommand().subcommands(AdbCommand().subcommands()).main(args)
 }
