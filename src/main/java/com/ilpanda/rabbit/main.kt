@@ -31,6 +31,13 @@ class AdbCommand(
         "notification" to "android.settings.ALL_APPS_NOTIFICATION_SETTING"
     )
 
+    val infoConfig by option("-i", "--info", help = "android adb get device info").choice(
+        "device" to DeviceInfo(),
+        "cpu" to CpuInfo(),
+        "memory" to MemInfo(),
+        "battery" to BatteryInfo()
+    )
+
     override fun run() {
         val res = """adb shell dumpsys activity activities | grep  mResumedActivity| awk '{print $4}'""".exec()
         val packageName = res.split("/")[0]
@@ -43,6 +50,14 @@ class AdbCommand(
             executeQuickStart(it)
         }
 
+        infoConfig?.also {
+            executeInfo(it)
+        }
+
+    }
+
+    private fun executeInfo(deviceInfoStrategy: DeviceInfoStrategy) {
+        deviceInfoStrategy.run()
     }
 
     private fun executeQuickStart(action: String?) {

@@ -176,3 +176,67 @@ class StartActivityCommand(override val packageName: String?) : AppCommandStrate
         "adb shell monkey -p  $packageName  -c android.intent.category.LAUNCHER 1".exec()
     }
 }
+
+
+interface DeviceInfoStrategy {
+
+    fun run()
+
+}
+
+class DeviceInfo : DeviceInfoStrategy {
+    override fun run() {
+        val model = """adb shell getprop ro.product.model""".exec()
+        val version = """adb shell getprop ro.build.version.release""".exec()
+        val density = """adb shell wm density""".exec()
+        val display = """adb shell dumpsys window displays """.exec()
+        val androidId = """adb shell settings get secure android_id""".exec()
+        val ipAddress = """adb shell ifconfig | grep Mask""".exec(ignoreError = true)
+
+        val displayRes = display.split("\\R".toRegex()).filter {
+            it.contains("init=")
+        }.first().trim()
+
+        val permissionDeny = ipAddress.contains("Permission denied")
+        val ipAddressRes = if (permissionDeny) {
+            ""
+        } else {
+            "ipAddress: $ipAddress"
+        }
+
+        val densityRes = density.substring(density.indexOf(":") + 1).trim()
+
+        val res = """
+        model: $model   
+        version: Android $version    
+        display: ${displayRes.substring(0, displayRes.indexOf("rng"))}
+        density: ${densityRes}dpi
+        density scale: ${densityRes.toFloat() / 160}
+        android_id: $androidId
+        $ipAddressRes
+        """.trimIndent()
+        println(res)
+
+    }
+}
+
+class CpuInfo : DeviceInfoStrategy {
+    override fun run() {
+        println("""adb shell cat /proc/cpuinfo""".exec())
+    }
+}
+
+class MemInfo : DeviceInfoStrategy {
+    override fun run() {
+        println("""adb shell cat /proc/meminfo""".exec())
+    }
+}
+
+class BatteryInfo : DeviceInfoStrategy {
+    override fun run() {
+        println("""adb shell dumpsys battery""".exec())
+    }
+}
+
+
+
