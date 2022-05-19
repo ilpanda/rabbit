@@ -38,6 +38,16 @@ class AdbCommand(
         "battery" to BatteryInfo()
     )
 
+    val screenConfig by option(
+        "-s",
+        "--screen",
+        help = "use android adb for screenshot，use scrcpy for mp4 record"
+    ).choice(
+        "png" to ScreenshotStrategy(),
+        "mp4" to Mp4RecordStrategy(),
+    )
+
+
     override fun run() {
         val res = """adb shell dumpsys activity activities | grep  mResumedActivity| awk '{print $4}'""".exec()
         val packageName = res.split("/")[0]
@@ -54,6 +64,13 @@ class AdbCommand(
             executeInfo(it)
         }
 
+        screenConfig?.also {
+            executeScreen(it)
+        }
+    }
+
+    private fun executeScreen(screenStrategy: ScreenStrategy) {
+        screenStrategy.run()
     }
 
     private fun executeInfo(deviceInfoStrategy: DeviceInfoStrategy) {

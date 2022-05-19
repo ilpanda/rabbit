@@ -3,6 +3,9 @@ package com.ilpanda.rabbit.command
 import com.ilpanda.rabbit.LogCommandConfig
 import com.ilpanda.rabbit.exec
 import com.ilpanda.rabbit.multiLine
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 interface LogCommandStrategy {
 
@@ -252,4 +255,22 @@ class BatteryInfo : DeviceInfoStrategy {
 }
 
 
+interface ScreenStrategy {
+    fun run()
+}
 
+class ScreenshotStrategy : ScreenStrategy {
+    override fun run() {
+        val timestamp = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Date())
+        "adb exec-out screencap -p > ${timestamp}_screenshot.png".exec()
+    }
+}
+
+class Mp4RecordStrategy : ScreenStrategy {
+
+    override fun run() {
+        val timestamp = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Date())
+        "scrcpy -Nr ${timestamp}_record.mp4".exec()
+    }
+
+}

@@ -1,6 +1,11 @@
 # Changelog
 
 
+## [1.7.0] - 2022-05-19
+
+### Added
+- support screenshot and mp4 record
+
 ## [1.6.0] - 2022-05-19
 
 ### Added
