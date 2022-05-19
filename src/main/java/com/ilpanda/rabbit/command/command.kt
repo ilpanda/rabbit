@@ -201,17 +201,30 @@ class DeviceInfo : DeviceInfoStrategy {
         val ipAddressRes = if (permissionDeny) {
             ""
         } else {
-            "ipAddress: $ipAddress"
+            "ipAddress: ${ipAddress.replace("\\R".toRegex(), "").trim()}"
         }
 
-        val densityRes = density.substring(density.indexOf(":") + 1).trim()
+        val densityRes: String
+        val densityScale: Float
+        val overrideDensity: String?
+        var overrideRes: String = ""
+        if (!density.contains("Override density")) {
+            densityRes = density.substring(density.indexOf(":") + 1).trim()
+            densityScale = densityRes.toFloat() / 160
+        } else {
+            // 如 OPPO 简易模式可以修改屏幕像素密度。
+            densityRes = density.split("\\R".toRegex())[0].substring(density.indexOf(":") + 1).trim()
+            overrideDensity = density.split("\\R".toRegex())[1].substring(density.indexOf(":") + 1).trim()
+            densityScale = overrideDensity.toFloat() / 160
+            overrideRes = "Override density: ${overrideDensity}dpi"
+        }
 
         val res = """
         model: $model   
         version: Android $version    
         display: ${displayRes.substring(0, displayRes.indexOf("rng"))}
-        density: ${densityRes}dpi
-        density scale: ${densityRes.toFloat() / 160}
+        Physical density: ${densityRes}dpi  $overrideRes
+        density scale: $densityScale
         android_id: $androidId
         $ipAddressRes
         """.trimIndent()
