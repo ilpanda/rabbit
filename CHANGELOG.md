@@ -1,7 +1,12 @@
 # Changelog
 
 
-## [1.4.0] - 2022-05-18
+## [1.6.0] - 2022-05-19
+
+### Added
+- support oppo simple mode
+
+## [1.5.0] - 2022-05-18
 
 ### Added
 - support get device info
@@ -47,3 +52,4 @@
 [1.3.0]: https://github.com/ilpanda/rabbit/releases/tag/1.3.0
 [1.4.0]: https://github.com/ilpanda/rabbit/releases/tag/1.4.0
 [1.4.0]: https://github.com/ilpanda/rabbit/releases/tag/1.5.0
+[1.4.0]: https://github.com/ilpanda/rabbit/releases/tag/1.6.0
