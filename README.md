@@ -2,12 +2,17 @@
 
 通过 rabbit 命令快速查看当前显示的 Activity 名称、Fragment 名称。
 
+rabbit 命令对 adb 命令进行了一层简单封装，因此在使用 rabbit 命令前，首先保证中断已经成功配置 adb。
+
+rabbit 命令支持将录制的 mp4 文件保存到本地，但使用该功能需要首先安装 scrcpy。
+
 ---
 
 ### 开发背景
 
 1. 在 Android 开发过程当中，为了快速定位代码，我们经常需要找到当前页面显示的 Activity 名称与 Fragment 名称。本项目 adb 进行封装，帮助快速定位当前页面。
-2. [adb idea](https://github.com/pbreault/adb-idea) 插件为我们在开发阶段提供了非常多好用的功能，但是该插件有一个缺点，就是无法指定包名 App。本项目对常用的几个 adb idea 命令进行了封装。
+2. [adb idea](https://github.com/pbreault/adb-idea) 插件为我们在开发阶段提供了非常多好用的功能，但是该插件有一个缺点，就是无法指定包名 App。本项目对常用的几个 adb idea
+   命令进行了封装。
 
 ---
 
@@ -19,11 +24,12 @@
 
 ---
 
-### 安装及使用
+### 安装及基础使用
 
 Mac 系统使用 brew 安装 rabbit：
 
 ```shell
+$ brew update
 $ brew install ilpanda/repo/rabbit
 ```
 
@@ -123,21 +129,102 @@ $ rabbit adb --start [packageName]
 ```
 
 ---
+
+### 查看手机信息
+
+查看手机基础信息：
+
+```shell
+$ rabbit adb  -i device
+model: Redmi K30 Pro Zoom Edition  // 手机型号
+version: Android 10                // 手机 Android 版本
+display: init=1080x2400 440dpi cur=1080x2400 app=1080x2270  // 手机分辨率
+density: 440dpi                    // 手机屏幕密度
+density scale: 2.75                // 手机密度 440.0f/160 计算得到
+android_id: 6c44a46e94c4954b       // Android Id
+```
+
+查看手机 CPU 信息，等同于 `adb shell cat /proc/cpuinfo`：
+
+```shell
+ $ rabbit adb  -i cpu
+```
+
+查看手机内存信息，等同于 `adb shell cat /proc/meminfo`：
+
+```shell
+ $ rabbit adb  -i memory
+```
+
+查看电池信息，等同于 `adb shell dumpsys battery`：
+
+```shell
+ $ rabbit adb  -i battery
+```
+
+---
+
+### 跳转到系统页面
+
+跳转到语言列表页：
+
+```shell
+$ rabbit adb  -ac locale
+```
+
+跳转到开发者选项页（需要已经开启开发者选项）：
+
+```shell
+$ rabbit adb  -ac developer
+```
+
+跳转到应用列表页：
+
+```shell
+$ rabbit adb  -ac application
+```
+
+跳转到通知管理列表页：
+
+```shell
+$ rabbit adb  -ac notification
+```
+
+跳转到蓝牙管理页：
+
+```shell
+$ rabbit adb  -ac bluetooth
+```
+
+跳转到输入法管理页：
+
+```shell
+$ rabbit adb  -ac input
+```
+
+---
+
 ### 常见问题
+
 当遇到下列报错：
+
 ```text
 Exception occurred while executing 'clear':
 java.lang.SecurityException: PID 8391 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package xxxx
 	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:3837)
 ```
+
 或者下列报错：
+
 ```text
 Exception occurred while executing 'grant':
 java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.
 	at android.app.ContextImpl.enforce(ContextImpl.java:2096)
 	......
 ```
+
 需要打开手机开发者选项中的禁止权限监控按钮（默认是关闭的）。如果遇到下列报错：
+
 ```text
 Exception occurred while executing 'clear':
 java.lang.SecurityException: adb clearing user data is forbidden.
@@ -146,4 +233,5 @@ java.lang.SecurityException: adb clearing user data is forbidden.
 	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4708)
 	......
 ```
+
 部分手机预装 App 不支持 adb clear。

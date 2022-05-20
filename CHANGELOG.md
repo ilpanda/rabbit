@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.8.0] - 2022-05-20
+
+### Added
+- update CHANGELOG.md
+- add start action
 
 ## [1.7.0] - 2022-05-19
 
@@ -56,5 +61,7 @@
 [1.2.0]: https://github.com/ilpanda/rabbit/releases/tag/1.2.0
 [1.3.0]: https://github.com/ilpanda/rabbit/releases/tag/1.3.0
 [1.4.0]: https://github.com/ilpanda/rabbit/releases/tag/1.4.0
-[1.4.0]: https://github.com/ilpanda/rabbit/releases/tag/1.5.0
-[1.4.0]: https://github.com/ilpanda/rabbit/releases/tag/1.6.0
+[1.5.0]: https://github.com/ilpanda/rabbit/releases/tag/1.5.0
+[1.6.0]: https://github.com/ilpanda/rabbit/releases/tag/1.6.0
+[1.7.0]: https://github.com/ilpanda/rabbit/releases/tag/1.7.0
+[1.8.0]: https://github.com/ilpanda/rabbit/releases/tag/1.8.0

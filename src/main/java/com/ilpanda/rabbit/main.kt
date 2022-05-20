@@ -28,7 +28,9 @@ class AdbCommand(
         "locale" to "android.settings.LOCALE_SETTINGS",
         "developer" to "android.settings.APPLICATION_DEVELOPMENT_SETTINGS",
         "application" to "android.settings.APPLICATION_SETTINGS",
-        "notification" to "android.settings.ALL_APPS_NOTIFICATION_SETTING"
+        "notification" to "android.settings.ALL_APPS_NOTIFICATION_SETTINGS",
+        "bluetooth" to "android.settings.BLUETOOTH_SETTINGS",
+        "input" to "android.settings.INPUT_METHOD_SETTINGS"
     )
 
     val infoConfig by option("-i", "--info", help = "android adb get device info").choice(
