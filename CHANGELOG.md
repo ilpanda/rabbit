@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.9.0] - 2022-05-20
+
+### Added
+- add start display action
+
 ## [1.8.0] - 2022-05-20
 
 ### Added
@@ -65,3 +70,4 @@
 [1.6.0]: https://github.com/ilpanda/rabbit/releases/tag/1.6.0
 [1.7.0]: https://github.com/ilpanda/rabbit/releases/tag/1.7.0
 [1.8.0]: https://github.com/ilpanda/rabbit/releases/tag/1.8.0
+[1.9.0]: https://github.com/ilpanda/rabbit/releases/tag/1.9.0

@@ -202,6 +202,12 @@ $ rabbit adb  -ac bluetooth
 $ rabbit adb  -ac input
 ```
 
+跳转到屏幕显示页：
+
+```shell
+$ rabbit adb  -ac display
+```
+
 ---
 
 ### 常见问题
