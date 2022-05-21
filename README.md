@@ -209,7 +209,20 @@ $ rabbit adb  -ac display
 ```
 
 ---
+### 截屏与屏幕录制
+ 
+保存手机截图到当前文件夹：
+```shell
+$ rabbit adb -s png
+```
 
+录制手机视频到当前文件夹，内部使用的是 scrcpy ：
+```shell
+$ rabbit adb  -s  mp4
+```
+
+
+---
 ### 常见问题
 
 当遇到下列报错：
