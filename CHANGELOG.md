@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.10.0] - 2022-05-22
+
+### Added
+- add start input method setting action
+
 ## [1.9.0] - 2022-05-20
 
 ### Added
@@ -71,3 +76,4 @@
 [1.7.0]: https://github.com/ilpanda/rabbit/releases/tag/1.7.0
 [1.8.0]: https://github.com/ilpanda/rabbit/releases/tag/1.8.0
 [1.9.0]: https://github.com/ilpanda/rabbit/releases/tag/1.9.0
+[1.10.0]: https://github.com/ilpanda/rabbit/releases/tag/1.10.0
