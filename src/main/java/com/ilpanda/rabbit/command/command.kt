@@ -224,7 +224,7 @@ class DeviceInfo : DeviceInfoStrategy {
             overrideRes = "Override density: ${overrideDensity}dpi"
         }
 
-        val versionBuild = getVersionBuild(sdkVersion)
+        val versionBuild = getVersionBuild(sdkVersion) ?: "Android $version"
         val res = """
         model: $model   
         version: $versionBuild    
