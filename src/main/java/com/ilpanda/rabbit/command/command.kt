@@ -2,6 +2,7 @@ package com.ilpanda.rabbit.command
 
 import com.ilpanda.rabbit.LogCommandConfig
 import com.ilpanda.rabbit.exec
+import com.ilpanda.rabbit.getVersionBuild
 import com.ilpanda.rabbit.multiLine
 import java.text.SimpleDateFormat
 import java.util.*
@@ -194,6 +195,7 @@ class DeviceInfo : DeviceInfoStrategy {
         val density = """adb shell wm density""".exec()
         val display = """adb shell dumpsys window displays """.exec()
         val androidId = """adb shell settings get secure android_id""".exec()
+        val sdkVersion = """adb shell getprop ro.build.version.sdk""".exec()
         val ipAddress = """adb shell ifconfig | grep Mask""".exec(ignoreError = true)
 
         val displayRes = display.split("\\R".toRegex()).filter {
@@ -222,9 +224,10 @@ class DeviceInfo : DeviceInfoStrategy {
             overrideRes = "Override density: ${overrideDensity}dpi"
         }
 
+        val versionBuild = getVersionBuild(sdkVersion)
         val res = """
         model: $model   
-        version: Android $version    
+        version: $versionBuild    
         display: ${displayRes.substring(0, displayRes.indexOf("rng"))}
         Physical density: ${densityRes}dpi  $overrideRes
         density scale: $densityScale

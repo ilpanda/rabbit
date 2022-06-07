@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.11.0] - 2022-06-07
+
+### Update
+- optimize android version display
+
 ## [1.10.0] - 2022-05-22
 
 ### Added
@@ -77,3 +82,4 @@
 [1.8.0]: https://github.com/ilpanda/rabbit/releases/tag/1.8.0
 [1.9.0]: https://github.com/ilpanda/rabbit/releases/tag/1.9.0
 [1.10.0]: https://github.com/ilpanda/rabbit/releases/tag/1.10.0
+[1.11.0]: https://github.com/ilpanda/rabbit/releases/tag/1.11.0
