@@ -59,6 +59,15 @@ App Options:
   --start packageName        start app , use adb shell monkey -p [packageName]
                              -c android.intent.category.LAUNCHER 1
   -r, --restart packageName  restart app , use --kill and --start command
+
+Options:
+  -ac, --action [locale|developer|application|notification|bluetooth|input|display|input]
+                                   android adb start system activity
+  -i, --info [device|cpu|memory|battery]
+                                   android adb get device info
+  -s, --screen [png|mp4]           use android adb for screenshot，use scrcpy
+                                   for mp4 record
+  -h, --help                       Show this message and exit
 ```
 
 手机连接 adb 后，查看当前手机 Activity 名称：
@@ -216,7 +225,12 @@ $ rabbit adb  -ac display
 $ rabbit adb -s png
 ```
 
-录制手机视频到当前文件夹，内部使用的是 scrcpy ：
+录制手机视频到当前文件夹，内部使用的是 scrcpy 录制屏幕，因此 mac 电脑必须首先安装 scrcpy：
+
+```shell
+$ brew install scrcpy
+```
+开始录制屏幕，录制完成，在终端按下 Ctrl + C 退出录制：
 ```shell
 $ rabbit adb  -s  mp4
 ```
