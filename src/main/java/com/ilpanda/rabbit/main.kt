@@ -53,8 +53,9 @@ class AdbCommand(
 
 
     override fun run() {
-        val res = """adb shell dumpsys activity activities | grep  mResumedActivity| awk '{print $4}'""".exec()
-        val packageName = res.split("/")[0]
+        val res = getCurrentPackageAndActivityName()
+
+        val packageName = res.split("/")[0].trimEnd('}')
 
         execute(packageName, logConfig)
 

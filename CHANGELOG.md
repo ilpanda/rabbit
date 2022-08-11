@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.12.0] - 2022-08-11
+
+### Update
+- Adaptation OS13
+
 ## [1.11.0] - 2022-06-07
 
 ### Update
@@ -83,3 +88,4 @@
 [1.9.0]: https://github.com/ilpanda/rabbit/releases/tag/1.9.0
 [1.10.0]: https://github.com/ilpanda/rabbit/releases/tag/1.10.0
 [1.11.0]: https://github.com/ilpanda/rabbit/releases/tag/1.11.0
+[1.12.0]: https://github.com/ilpanda/rabbit/releases/tag/1.12.0

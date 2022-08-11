@@ -33,8 +33,8 @@ class LogCurrentActivityCommandStrategy : LogCommandStrategy {
         commandConfig.logCurrentActivity
 
     override fun run(packageName: String, commandConfig: LogCommandConfig) {
-        val res = """adb shell dumpsys activity activities | grep  mResumedActivity| awk '{print $4}'""".exec()
-        println(res)
+        val res = getCurrentPackageAndActivityName()
+        log(res)
     }
 }
 
@@ -44,7 +44,7 @@ class LogAllActivityCommandStrategy : LogCommandStrategy {
 
 
     override fun run(packageName: String, commandConfig: LogCommandConfig) {
-        println("""adb shell dumpsys activity activities | grep 'Hist #'""".exec())
+        log(getActivityListStringFromTopToBottom())
     }
 }
 
@@ -54,7 +54,7 @@ class LogAllFragmentCommandStrategy : LogCommandStrategy {
 
 
     override fun run(packageName: String, commandConfig: LogCommandConfig) {
-        println(("""adb shell dumpsys activity $packageName |grep  -E '^\s*#\d'| grep -v -E  'ReportFragment|plan'""").exec())
+        log(("""adb shell dumpsys activity $packageName |grep  -E '^\s*#\d'| grep -v -E  'ReportFragment|plan'""").exec())
     }
 
 }
@@ -65,7 +65,8 @@ class LogSpecificPackageActivityCommandStrategy : LogCommandStrategy {
         !commandConfig.logSpecificPackageActivity.isNullOrEmpty()
 
     override fun run(packageName: String, commandConfig: LogCommandConfig) {
-        println(("""adb shell dumpsys activity activities | grep 'Hist #' | grep ${commandConfig.logSpecificPackageActivity}""").exec())
+        val activityListString = getActivityListStringFromTopToBottom()
+        log(("""echo '$activityListString' | grep ${commandConfig.logSpecificPackageActivity}""").exec())
     }
 
 }
@@ -234,26 +235,26 @@ class DeviceInfo : DeviceInfoStrategy {
         android_id: $androidId
         $ipAddressRes
         """.trimIndent()
-        println(res)
+        log(res)
 
     }
 }
 
 class CpuInfo : DeviceInfoStrategy {
     override fun run() {
-        println("""adb shell cat /proc/cpuinfo""".exec())
+        log("""adb shell cat /proc/cpuinfo""".exec())
     }
 }
 
 class MemInfo : DeviceInfoStrategy {
     override fun run() {
-        println("""adb shell cat /proc/meminfo""".exec())
+        log("""adb shell cat /proc/meminfo""".exec())
     }
 }
 
 class BatteryInfo : DeviceInfoStrategy {
     override fun run() {
-        println("""adb shell dumpsys battery""".exec())
+        log("""adb shell dumpsys battery""".exec())
     }
 }
 

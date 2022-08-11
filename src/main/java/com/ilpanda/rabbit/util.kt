@@ -1,5 +1,6 @@
 package com.ilpanda.rabbit
 
+import com.ilpanda.rabbit.command.log
 import okio.buffer
 import okio.source
 import kotlin.system.exitProcess
@@ -32,7 +33,7 @@ fun String.exec(
             }
 
             if (interceptorRes == true || !ignoreError) {
-                println(errorOutput)
+                log(errorOutput)
                 exitProcess(1)
             }
         }
