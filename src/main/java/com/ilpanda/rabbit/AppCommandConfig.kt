@@ -37,7 +37,6 @@ class AppCommandConfig : OptionGroup(
     )
 
     val restartPackageName by option(
-        "-r",
         "--restart",
         metavar = "packageName",
         help = "restart app , use --kill and --start command",

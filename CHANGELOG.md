@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.13.0] - 2022-08-20
+
+### Add
+- Support adb rotation
+
 ## [1.12.0] - 2022-08-11
 
 ### Update
@@ -89,3 +94,4 @@
 [1.10.0]: https://github.com/ilpanda/rabbit/releases/tag/1.10.0
 [1.11.0]: https://github.com/ilpanda/rabbit/releases/tag/1.11.0
 [1.12.0]: https://github.com/ilpanda/rabbit/releases/tag/1.12.0
+[1.13.0]: https://github.com/ilpanda/rabbit/releases/tag/1.13.0

@@ -278,3 +278,52 @@ class Mp4RecordStrategy : ScreenStrategy {
     }
 
 }
+
+
+interface RotationStrategy {
+    fun run()
+}
+
+
+class RotationEnableStrategy :RotationStrategy{
+    override fun run() {
+        " adb shell settings put system accelerometer_rotation 1".exec()
+    }
+}
+
+
+class RotationDisableStrategy :RotationStrategy{
+    override fun run() {
+        "adb shell settings put system accelerometer_rotation 0".exec()
+    }
+}
+
+
+class RotationPortraitStrategy :RotationStrategy{
+    override fun run() {
+        "adb shell settings put system user_rotation 0".exec()
+    }
+}
+
+
+class RotationLandscapeStrategy :RotationStrategy{
+    override fun run() {
+        "adb shell settings put system user_rotation 1".exec()
+    }
+}
+
+class RotationPortraitReverseStrategy :RotationStrategy{
+    override fun run() {
+        "adb shell settings put system user_rotation 2".exec()
+    }
+}
+
+
+class RotationLandscapeReverseStrategy :RotationStrategy{
+    override fun run() {
+        "adb shell settings put system user_rotation 3".exec()
+    }
+}
+
+
+

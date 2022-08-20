@@ -52,6 +52,19 @@ class AdbCommand(
     )
 
 
+    val rotationConfig by option(
+        "-r",
+        "--rotate",
+        help = "use android adb for rotation。enable:open auto rotate . disable: close auto rotate. 0: Portrait、1: Landscape、2: Portrait Reversed、3: Landscape Reversed"
+    ).choice(
+        "enable" to RotationEnableStrategy(),
+        "disable" to RotationDisableStrategy(),
+        "0" to RotationPortraitStrategy(),
+        "1" to RotationLandscapeStrategy(),
+        "2" to RotationPortraitReverseStrategy(),
+        "3" to RotationLandscapeReverseStrategy(),
+    )
+
     override fun run() {
         val res = getCurrentPackageAndActivityName()
 
@@ -72,6 +85,14 @@ class AdbCommand(
         screenConfig?.also {
             executeScreen(it)
         }
+
+        rotationConfig?.also {
+            executeRotation(it)
+        }
+    }
+
+    private fun executeRotation(it: RotationStrategy) {
+        it.run()
     }
 
     private fun executeScreen(screenStrategy: ScreenStrategy) {
