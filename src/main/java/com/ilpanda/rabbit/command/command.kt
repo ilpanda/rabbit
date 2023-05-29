@@ -198,6 +198,13 @@ class DeviceInfo : DeviceInfoStrategy {
         val androidId = """adb shell settings get secure android_id""".exec()
         val sdkVersion = """adb shell getprop ro.build.version.sdk""".exec()
         val ipAddress = """adb shell ifconfig | grep Mask""".exec(ignoreError = true)
+        val imei =
+            """adb shell "service call iphonesubinfo 1 s16 com.android.shell | cut -c 52-66 | tr -d '.[:space:]'"""".exec()
+        var codeName = " adb shell getprop ro.build.version.codename".exec().uppercase()
+
+        if ("REL" == codeName) {
+            codeName = ""
+        }
 
         val displayRes = display.split("\\R".toRegex()).filter {
             it.contains("init=")
@@ -228,7 +235,8 @@ class DeviceInfo : DeviceInfoStrategy {
         val versionBuild = getVersionBuild(sdkVersion) ?: "Android $version"
         val res = """
         model: $model   
-        version: $versionBuild    
+        imei: $imei
+        version: $versionBuild $codeName   
         display: ${displayRes.substring(0, displayRes.indexOf("rng"))}
         Physical density: ${densityRes}dpi  $overrideRes
         density scale: $densityScale

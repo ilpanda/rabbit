@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.14.0] - 2023-05-29
+
+### update
+- Support adb imei
+
 ## [1.13.0] - 2022-08-20
 
 ### Add
@@ -95,3 +100,4 @@
 [1.11.0]: https://github.com/ilpanda/rabbit/releases/tag/1.11.0
 [1.12.0]: https://github.com/ilpanda/rabbit/releases/tag/1.12.0
 [1.13.0]: https://github.com/ilpanda/rabbit/releases/tag/1.13.0
+[1.14.0]: https://github.com/ilpanda/rabbit/releases/tag/1.14.0
