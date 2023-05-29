@@ -58,6 +58,7 @@ jobs:
 
           # install brew
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           
           # Update to ensure we have the latest version which supports arbitrary default branches.
           brew update
