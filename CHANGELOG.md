@@ -1,6 +1,12 @@
 # Changelog
 
 
+## [1.18.0] - 2024-01-22
+
+### update
+- Support brew
+
+
 ## [1.17.0] - 2023-05-29
 
 ### update
@@ -122,3 +128,4 @@
 [1.15.0]: https://github.com/ilpanda/rabbit/releases/tag/1.15.0
 [1.16.0]: https://github.com/ilpanda/rabbit/releases/tag/1.16.0
 [1.17.0]: https://github.com/ilpanda/rabbit/releases/tag/1.17.0
+[1.18.0]: https://github.com/ilpanda/rabbit/releases/tag/1.18.0

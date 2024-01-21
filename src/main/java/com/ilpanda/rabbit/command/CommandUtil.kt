@@ -4,8 +4,12 @@ import com.ilpanda.rabbit.exec
 
 
 fun getCurrentPackageAndActivityName(): String {
-    return """adb shell dumpsys activity activities| grep -v mResumedActivity| grep  ResumedActivity| grep -v top| awk '{print $4}'""".exec()
-        .trimEnd('}')
+    val result = """ adb shell dumpsys activity activities | grep  mResumedActivity |awk '{print ${'$'}4}'""".exec()
+    if (result.isEmpty()) {
+        return """adb shell dumpsys activity activities| grep  ResumedActivity| grep -v top| awk '{print $4}'""".exec()
+            .trimEnd('}')
+    }
+    return result
 }
 
 fun getActivityListStringFromTopToBottom(): String {
