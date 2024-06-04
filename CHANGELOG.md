@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.19.0] - 2024-06-05
+
+### update
+- Upgrade Kotlin、Gradle Version
+- Support start app detail 
 
 ## [1.18.0] - 2024-01-22
 
