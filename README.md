@@ -61,7 +61,7 @@ App Options:
   -r, --restart packageName  restart app , use --kill and --start command
 
 Options:
-  -ac, --action [locale|developer|application|notification|bluetooth|input|display|input]
+  -ac, --action [locale|developer|application|notification|bluetooth|input|display]
                                    android adb start system activity
   -i, --info [device|cpu|memory|battery]
                                    android adb get device info
