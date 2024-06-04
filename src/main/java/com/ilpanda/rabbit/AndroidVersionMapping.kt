@@ -17,6 +17,7 @@ fun getVersionBuild(key: String): String? {
         hashMap["31"] = "Android 12.0，S，API 31"
         hashMap["32"] = "Android 12.1，S，API 32"
         hashMap["33"] = "Android 13.0，T，API 33"
+        hashMap["34"] = "Android 14.0，U，API 33"
     }
     return hashMap[key]
 
