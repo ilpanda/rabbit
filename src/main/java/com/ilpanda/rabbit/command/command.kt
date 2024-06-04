@@ -6,7 +6,6 @@ import com.ilpanda.rabbit.getVersionBuild
 import com.ilpanda.rabbit.multiLine
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 interface LogCommandStrategy {
 
@@ -181,6 +180,18 @@ class StartActivityCommand(override val packageName: String?) : AppCommandStrate
         "adb shell monkey -p  $packageName  -c android.intent.category.LAUNCHER 1".exec()
     }
 }
+
+
+/**
+ * 跳转到 App 详情页
+ */
+class StartAppDetailCommand(override val packageName: String?) : AppCommandStrategy {
+
+    override fun run(packageName: String) {
+        "adb shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:$packageName".exec()
+    }
+}
+
 
 
 interface DeviceInfoStrategy {

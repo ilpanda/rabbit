@@ -128,6 +128,7 @@ class AdbCommand(
             RevokeCommand(config.revokeAppPermissionPackageName),
             StartActivityCommand(config.startAppPackageName),
             RestartAppCommand(config.restartPackageName),
+            StartAppDetailCommand(config.startAppDetailPackageName),
         ).forEach {
             if (it.canHandle()) {
                 it.run(it.packageName!!)
