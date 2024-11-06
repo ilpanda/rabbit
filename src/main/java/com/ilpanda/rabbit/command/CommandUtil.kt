@@ -19,3 +19,7 @@ fun getActivityListStringFromTopToBottom(): String {
 fun log(msg: String) {
     println(msg)
 }
+
+fun logE(msg: String){
+    println("[Error] : $msg")
+}

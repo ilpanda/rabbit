@@ -129,6 +129,7 @@ class AdbCommand(
             StartActivityCommand(config.startAppPackageName),
             RestartAppCommand(config.restartPackageName),
             StartAppDetailCommand(config.startAppDetailPackageName),
+            ExportAppCommand(config.exportPackageName),
         ).forEach {
             if (it.canHandle()) {
                 it.run(it.packageName!!)

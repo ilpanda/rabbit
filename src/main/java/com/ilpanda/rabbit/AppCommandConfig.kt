@@ -48,5 +48,11 @@ class AppCommandConfig : OptionGroup(
         help = "start app detail page , adb shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS package:xxx",
     )
 
+    val exportPackageName by option(
+        "--export",
+        metavar = "packageName",
+        help = "export app  , adb pull adb to desktop",
+    )
+
 
 }

@@ -4,6 +4,7 @@ import com.ilpanda.rabbit.LogCommandConfig
 import com.ilpanda.rabbit.exec
 import com.ilpanda.rabbit.getVersionBuild
 import com.ilpanda.rabbit.multiLine
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -192,7 +193,36 @@ class StartAppDetailCommand(override val packageName: String?) : AppCommandStrat
     }
 }
 
+/**
+ * 导出 App
+ */
+class ExportAppCommand(override val packageName: String?) : AppCommandStrategy {
 
+    override fun run(packageName: String) {
+        val multiLine = "adb shell pm list packages ${packageName}".exec().multiLine()
+        var packageExist = false
+        multiLine.forEach {
+            if (it.contains(packageName)) {
+                packageExist = true
+            }
+        }
+        if (packageExist) {
+            val apkPath = "adb shell pm path ${packageName}".exec().removePrefix("package:")
+            if (apkPath.isNotEmpty()) {
+                val destFile = File("./${packageName}.apk")
+                if (destFile.exists()) {
+                    logE("${destFile.absolutePath} has exists")
+                } else {
+                    "adb pull ${apkPath} ${destFile.absolutePath}".exec()
+                }
+            } else {
+                println("hi")
+            }
+        } else {
+            log("${packageName} is not exists in phone")
+        }
+    }
+}
 
 interface DeviceInfoStrategy {
 
@@ -304,41 +334,41 @@ interface RotationStrategy {
 }
 
 
-class RotationEnableStrategy :RotationStrategy{
+class RotationEnableStrategy : RotationStrategy {
     override fun run() {
         " adb shell settings put system accelerometer_rotation 1".exec()
     }
 }
 
 
-class RotationDisableStrategy :RotationStrategy{
+class RotationDisableStrategy : RotationStrategy {
     override fun run() {
         "adb shell settings put system accelerometer_rotation 0".exec()
     }
 }
 
 
-class RotationPortraitStrategy :RotationStrategy{
+class RotationPortraitStrategy : RotationStrategy {
     override fun run() {
         "adb shell settings put system user_rotation 0".exec()
     }
 }
 
 
-class RotationLandscapeStrategy :RotationStrategy{
+class RotationLandscapeStrategy : RotationStrategy {
     override fun run() {
         "adb shell settings put system user_rotation 1".exec()
     }
 }
 
-class RotationPortraitReverseStrategy :RotationStrategy{
+class RotationPortraitReverseStrategy : RotationStrategy {
     override fun run() {
         "adb shell settings put system user_rotation 2".exec()
     }
 }
 
 
-class RotationLandscapeReverseStrategy :RotationStrategy{
+class RotationLandscapeReverseStrategy : RotationStrategy {
     override fun run() {
         "adb shell settings put system user_rotation 3".exec()
     }
