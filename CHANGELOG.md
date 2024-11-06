@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.20.0] - 2024-11-07
+
+### update
+- Support adb export apk
+
 ## [1.19.0] - 2024-06-05
 
 ### update
@@ -134,3 +139,5 @@
 [1.16.0]: https://github.com/ilpanda/rabbit/releases/tag/1.16.0
 [1.17.0]: https://github.com/ilpanda/rabbit/releases/tag/1.17.0
 [1.18.0]: https://github.com/ilpanda/rabbit/releases/tag/1.18.0
+[1.19.0]: https://github.com/ilpanda/rabbit/releases/tag/1.19.0
+[1.20.0]: https://github.com/ilpanda/rabbit/releases/tag/1.20.0
