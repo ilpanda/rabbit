@@ -293,7 +293,7 @@ class Mp4RecordStrategy : ScreenStrategy {
 
     override fun run() {
         val timestamp = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Date())
-        "scrcpy -Nr ${timestamp}_record.mp4".exec()
+        "scrcpy -Nr --no-window ${timestamp}_record.mp4".exec()
     }
 
 }
