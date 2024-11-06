@@ -213,7 +213,8 @@ class ExportAppCommand(override val packageName: String?) : AppCommandStrategy {
                 if (destFile.exists()) {
                     logE("${destFile.absolutePath} has exists")
                 } else {
-                    "adb pull ${apkPath} ${destFile.absolutePath}".exec()
+                    println("adb pull ${apkPath} ${destFile.absolutePath}".exec().multiLine())
+                    log("apk has been saved in ${destFile.absolutePath} ")
                 }
             } else {
                 println("hi")
