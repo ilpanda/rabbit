@@ -1,10 +1,14 @@
 # Changelog
 
+## [1.22.0] - 2024-11-07
+
+### update
+- Fix scrcpy record mp4
+
 ## [1.21.0] - 2024-11-07
 
 ### update
 - Support adb export log
-
 
 ## [1.20.0] - 2024-11-07
 
@@ -148,3 +152,4 @@
 [1.19.0]: https://github.com/ilpanda/rabbit/releases/tag/1.19.0
 [1.20.0]: https://github.com/ilpanda/rabbit/releases/tag/1.20.0
 [1.21.0]: https://github.com/ilpanda/rabbit/releases/tag/1.21.0
+[1.22.0]: https://github.com/ilpanda/rabbit/releases/tag/1.22.0
