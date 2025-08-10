@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.23.0] - 2025-08-10
+
+### update
+- Support android16 info
+
 ## [1.22.0] - 2024-11-07
 
 ### update
